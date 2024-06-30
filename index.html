@@ -5,35 +5,30 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Drink Explorer</title>
+		<title>Drinks</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
 		<div class="container">
-			<div class="theme-switch">
-				<label for="theme-switch">Dark Mode</label>
-				<input type="checkbox" id="theme-switch" />
-			</div>
-
+			<h1>Drinks</h1>
 			<div class="selection">
-				<label for="booze-select">Choose booze type:</label>
+				<label for="booze-select">Select Booze Type:</label>
 				<select id="booze-select">
 					<option value="default">Choose booze type</option>
 				</select>
 			</div>
+			<div id="drink-images" class="drink-images"></div>
+			<div id="drink-details" class="drink-details"></div>
 
-			<div class="drink-cards" id="drink-cards"></div>
-
-			<div class="drink-details" id="drink-details"></div>
-
-			<button class="scroll-up" id="scroll-up">↑</button>
-
-			<div class="prev-next-btns">
-				<button id="prev-btn">Previous</button>
-				<button id="next-btn">Next</button>
-			</div>
+			<!-- Back to Top Button -->
+			<button id="back-to-top-btn">Back to Top</button>
 		</div>
-
 		<script src="script.js"></script>
 	</body>
 </html>
