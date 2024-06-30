@@ -1,85 +1,119 @@
-/** @format */
+/**
+ * General styling
+ *
+ * @format
+ */
 
 body {
 	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 20px;
 	background-color: #f0f0f0;
+	margin: 0;
+	padding: 0;
 }
 
 .container {
 	max-width: 800px;
-	margin: 0 auto;
-	background-color: #fff;
+	margin: 20px auto;
 	padding: 20px;
+	background-color: #fff;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
 	text-align: center;
-	margin-bottom: 20px;
+	color: #333;
 }
 
 .selection {
-	text-align: center;
 	margin-bottom: 20px;
 }
 
-#booze-select {
-	padding: 8px;
-	font-size: 1rem;
+/* Booze select */
+label {
+	display: block;
+	margin-bottom: 10px;
 }
 
+#booze-select {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+/* Drink cards */
 .drink-images {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-	gap: 10px;
-	justify-items: center;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 20px;
 }
 
 .drink-card {
-	text-align: center;
-	cursor: pointer;
+	border: 1px solid #ccc;
 	border-radius: 8px;
 	overflow: hidden;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+
+.drink-card:hover {
+	transform: scale(1.05);
 }
 
 .drink-card img {
 	width: 100%;
 	height: auto;
-	border-radius: 8px 8px 0 0;
+	object-fit: cover;
 }
 
 .drink-card h3 {
-	margin: 10px 0;
+	text-align: center;
+	padding: 10px;
+	background-color: #f0f0f0;
+	margin: 0;
 }
 
-.drink-details {
-	display: none; /* Initially hide drink details */
-	padding: 20px;
-	background-color: #f5f5f5;
-	border-radius: 8px;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+/* Drink details */
+#drink-details {
+	display: none;
 	margin-top: 20px;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.drink-details h2 {
+#drink-details h2 {
 	margin-top: 0;
-	font-size: 1.5rem;
+	color: #333;
 }
 
-.drink-details p {
-	line-height: 1.6;
+#drink-details p {
+	margin-bottom: 10px;
 }
 
-@media (max-width: 600px) {
-	.container {
-		padding: 10px;
-	}
+#drink-details ul {
+	margin-top: 0;
+	padding-left: 20px;
+}
 
-	.drink-images {
-		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-	}
+#drink-details img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin-top: 10px;
+}
+
+#drink-details a {
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+	color: #007bff;
+	text-decoration: none;
+}
+
+#drink-details a:hover {
+	text-decoration: underline;
 }

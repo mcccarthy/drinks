@@ -90,8 +90,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (drink.strInstructions) {
+      const instructionsTitle = document.createElement('h3');
+      instructionsTitle.textContent = 'Instructions:';
+      drinkDetailsContainer.appendChild(instructionsTitle);
+
       const instructions = document.createElement('p');
-      instructions.textContent = `Instructions: ${drink.strInstructions}`;
+      instructions.textContent = drink.strInstructions;
       drinkDetailsContainer.appendChild(instructions);
     }
 
@@ -117,6 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
     drinkImage.src = drink.strDrinkThumb;
     drinkImage.alt = drink.strDrink;
     drinkDetailsContainer.appendChild(drinkImage);
+
+    // Back to top link
+    const backToTopLink = document.createElement('a');
+    backToTopLink.href = '#';
+    backToTopLink.textContent = 'Back to Top';
+    backToTopLink.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    drinkDetailsContainer.appendChild(backToTopLink);
 
     drinkDetailsContainer.style.display = 'block'; // Show drink details
     drinkDetailsContainer.scrollIntoView({ behavior: 'smooth' }); // Scroll to drink details
