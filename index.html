@@ -5,21 +5,35 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Drinks</title>
+		<title>Drink Explorer</title>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
 		<div class="container">
-			<h1>Drinks</h1>
+			<div class="theme-switch">
+				<label for="theme-switch">Dark Mode</label>
+				<input type="checkbox" id="theme-switch" />
+			</div>
+
 			<div class="selection">
-				<label for="booze-select">Select Booze Type:</label>
+				<label for="booze-select">Choose booze type:</label>
 				<select id="booze-select">
 					<option value="default">Choose booze type</option>
 				</select>
 			</div>
-			<div id="drink-images" class="drink-images"></div>
-			<div id="drink-details" class="drink-details"></div>
+
+			<div class="drink-cards" id="drink-cards"></div>
+
+			<div class="drink-details" id="drink-details"></div>
+
+			<button class="scroll-up" id="scroll-up">↑</button>
+
+			<div class="prev-next-btns">
+				<button id="prev-btn">Previous</button>
+				<button id="next-btn">Next</button>
+			</div>
 		</div>
+
 		<script src="script.js"></script>
 	</body>
 </html>
