@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       drinkImage.src = drink.strDrinkThumb;
       drinkImage.alt = drink.strDrink;
       drinkImage.title = drink.strDrink;
-      drinkImage.addEventListener('click', () => displayDrinkDetails(drink));
+      drinkImage.addEventListener('click', () => displayDrinkDetails(drink.idDrink));
 
       const drinkTitle = document.createElement('h3');
       drinkTitle.textContent = drink.strDrink;
@@ -76,63 +76,54 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Function to display drink details
-  function displayDrinkDetails(drink) {
-    drinkDetailsContainer.innerHTML = ''; // Clear previous details
+  function displayDrinkDetails(drinkId) {
+    fetch(`${apiUrl}/lookup.php?i=${drinkId}`)
+      .then(response => response.json())
+      .then(data => {
+        const drink = data.drinks[0];
+        console.log('Fetched drink details:', drink);
 
-    const title = document.createElement('h2');
-    title.textContent = drink.strDrink;
-    drinkDetailsContainer.appendChild(title);
+        drinkDetailsContainer.innerHTML = ''; // Clear previous details
 
-    if (drink.strCategory) {
-      const category = document.createElement('p');
-      category.textContent = `Category: ${drink.strCategory}`;
-      drinkDetailsContainer.appendChild(category);
-    }
+        const title = document.createElement('h2');
+        title.textContent = drink.strDrink;
+        drinkDetailsContainer.appendChild(title);
 
-    if (drink.strInstructions) {
-      const instructionsTitle = document.createElement('h3');
-      instructionsTitle.textContent = 'Instructions:';
-      drinkDetailsContainer.appendChild(instructionsTitle);
+        const instructionsTitle = document.createElement('h3');
+        instructionsTitle.textContent = 'Instructions:';
+        drinkDetailsContainer.appendChild(instructionsTitle);
 
-      const instructions = document.createElement('p');
-      instructions.textContent = drink.strInstructions;
-      drinkDetailsContainer.appendChild(instructions);
-    }
+        const instructions = document.createElement('p');
+        instructions.textContent = drink.strInstructions;
+        drinkDetailsContainer.appendChild(instructions);
 
-    const ingredientsTitle = document.createElement('h3');
-    ingredientsTitle.textContent = 'Ingredients:';
-    drinkDetailsContainer.appendChild(ingredientsTitle);
+        const ingredientsTitle = document.createElement('h3');
+        ingredientsTitle.textContent = 'Ingredients:';
+        drinkDetailsContainer.appendChild(ingredientsTitle);
 
-    const ingredientsList = document.createElement('ul');
-    for (let i = 1; i <= 15; i++) { // Assuming up to 15 ingredients
-      const ingredient = drink[`strIngredient${i}`];
-      const measure = drink[`strMeasure${i}`];
-      if (ingredient && ingredient.trim() !== '') {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${ingredient} - ${measure || 'Measure not available'}`;
-        ingredientsList.appendChild(listItem);
-      } else {
-        break;
-      }
-    }
-    drinkDetailsContainer.appendChild(ingredientsList);
+        const ingredientsList = document.createElement('ul');
+        for (let i = 1; i <= 15; i++) { // Assuming up to 15 ingredients
+          const ingredient = drink[`strIngredient${i}`];
+          const measure = drink[`strMeasure${i}`];
+          if (ingredient && ingredient.trim() !== '') {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${ingredient} - ${measure || 'Measure not available'}`;
+            ingredientsList.appendChild(listItem);
+          } else {
+            break;
+          }
+        }
+        drinkDetailsContainer.appendChild(ingredientsList);
 
-    const drinkImage = document.createElement('img');
-    drinkImage.src = drink.strDrinkThumb;
-    drinkImage.alt = drink.strDrink;
-    drinkDetailsContainer.appendChild(drinkImage);
+        const drinkImage = document.createElement('img');
+        drinkImage.src = drink.strDrinkThumb;
+        drinkImage.alt = drink.strDrink;
+        drinkDetailsContainer.appendChild(drinkImage);
 
-    // Back to top link
-    const backToTopLink = document.createElement('a');
-    backToTopLink.href = '#';
-    backToTopLink.textContent = 'Back to Top';
-    backToTopLink.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    drinkDetailsContainer.appendChild(backToTopLink);
-
-    drinkDetailsContainer.style.display = 'block'; // Show drink details
-    drinkDetailsContainer.scrollIntoView({ behavior: 'smooth' }); // Scroll to drink details
+        drinkDetailsContainer.style.display = 'block'; // Show drink details
+        drinkDetailsContainer.scrollIntoView({ behavior: 'smooth' }); // Scroll to drink details
+      })
+      .catch(error => console.error(`Error fetching drink details for ID ${drinkId}:`, error));
   }
 
   // Event listener for booze select change

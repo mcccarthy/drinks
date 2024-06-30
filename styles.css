@@ -5,8 +5,9 @@
  */
 
 body {
-	font-family: Arial, sans-serif;
-	background-color: #f0f0f0;
+	font-family: 'Montserrat', Arial, sans-serif;
+	background-color: #1e272e;
+	color: #ffffff;
 	margin: 0;
 	padding: 0;
 }
@@ -15,17 +16,20 @@ body {
 	max-width: 800px;
 	margin: 20px auto;
 	padding: 20px;
-	background-color: #fff;
+	background-color: #2d3436;
 	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
 	text-align: center;
-	color: #333;
+	margin-bottom: 20px;
+	color: #ff6b6b;
+	font-size: 36px;
 }
 
 .selection {
+	text-align: center;
 	margin-bottom: 20px;
 }
 
@@ -33,14 +37,25 @@ h1 {
 label {
 	display: block;
 	margin-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ff6b6b;
 }
 
 #booze-select {
 	width: 100%;
 	padding: 10px;
 	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+	border: none;
+	border-bottom: 2px solid #ff6b6b;
+	background-color: #2d3436;
+	color: #ffffff;
+	outline: none;
+	transition: border-bottom 0.3s ease;
+}
+
+#booze-select:focus {
+	border-bottom-color: #45aaf2;
 }
 
 /* Drink cards */
@@ -51,28 +66,38 @@ label {
 }
 
 .drink-card {
-	border: 1px solid #ccc;
+	background-color: #34495e;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	overflow: hidden;
 	cursor: pointer;
-	transition: transform 0.2s ease;
+	transition: transform 0.3s ease;
 }
 
 .drink-card:hover {
-	transform: scale(1.05);
+	transform: translateY(-5px);
+	box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .drink-card img {
 	width: 100%;
-	height: auto;
+	height: 150px;
 	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.drink-card:hover img {
+	transform: scale(1.05);
 }
 
 .drink-card h3 {
 	text-align: center;
 	padding: 10px;
-	background-color: #f0f0f0;
+	background-color: #45aaf2;
+	color: #ffffff;
 	margin: 0;
+	font-size: 18px;
+	font-weight: bold;
 }
 
 /* Drink details */
@@ -80,40 +105,93 @@ label {
 	display: none;
 	margin-top: 20px;
 	padding: 20px;
-	background-color: #fff;
+	background-color: #34495e;
 	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 #drink-details h2 {
 	margin-top: 0;
-	color: #333;
+	color: #45aaf2;
+	font-size: 24px;
 }
 
 #drink-details p {
 	margin-bottom: 10px;
+	line-height: 1.6;
+}
+
+#drink-details h3 {
+	margin-top: 20px;
+	font-size: 20px;
+	color: #45aaf2;
 }
 
 #drink-details ul {
 	margin-top: 0;
 	padding-left: 20px;
+	list-style: none;
+}
+
+#drink-details li {
+	margin-bottom: 5px;
 }
 
 #drink-details img {
 	display: block;
 	max-width: 100%;
 	height: auto;
-	margin-top: 10px;
+	margin-top: 20px;
+	border-radius: 8px;
 }
 
 #drink-details a {
 	display: block;
 	text-align: center;
 	margin-top: 20px;
-	color: #007bff;
+	color: #45aaf2;
 	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
+	transition: color 0.3s ease;
 }
 
 #drink-details a:hover {
-	text-decoration: underline;
+	color: #ff6b6b;
+}
+
+/* Loading animation */
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+}
+
+.loading::after {
+	content: '';
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 2px solid #ff6b6b;
+	border-top-color: transparent;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
 }
